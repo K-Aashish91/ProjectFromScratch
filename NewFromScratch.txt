@@ -1,0 +1,41 @@
+
+
+drop table  employee_details;
+
+CREATE TABLE employee_details(
+employee_id NUMBER(10),
+name VARCHAR(20) NOT NULL,
+salary NUMBER(10,2) NOT NULL,
+address_id NUMBER(10) NOT NULL,
+CONSTRAINT employee_id_pk PRIMARY KEY(employee_id),
+CONSTRAINT address_id_fk FOREIGN KEY(address_id) REFERENCES address_details(address_id)
+);
+
+
+CREATE SEQUENCE employee_details_sequence START WITH 100 INCREMENT BY 1;
+
+INSERT INTO employee_details VALUES(employee_details_sequence.NEXTVAL,'Vivek Gohli',1000,10000);
+
+commit;
+
+SELECT * FROM employee_details;
+
+
+
+CREATE TABLE address_details(
+address_id NUMBER(10),
+building_name VARCHAR(50) NOT NULL,
+street VARCHAR(50) NOT NULL,
+city VARCHAR(50) NOT NULL,
+pin NUMBER(10)  NOT NULL,
+CONSTRAINT address_id_pk PRIMARY KEY(address_id)
+);
+
+
+CREATE SEQUENCE address_details_sequence START WITH 10000 INCREMENT BY 1;
+
+INSERT INTO address_details VALUES(address_details_sequence.NEXTVAL, 'Woodland Park','M.G. Road','Mumbai',400012);
+
+commit;
+
+SELECT * FROM address_details;
